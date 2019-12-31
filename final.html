@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 
 <head>
-    作文產生器
+    <font size="36" color="Blue">作文產生器</font>
 </head>
-<form action="test.php" method="post">
-    用幾個字形容你的作文：<input type="text" name="UserName"></br>
-    用密碼來形容你的作文：<input type="password"></br>
-    你覺得作文哪裡最重要<select>
-        　<option value="Chi">起</option>
-        <option value="Cheng">承</option>
-        <option value="Zuan">轉</option>
-        <option value="He">合</option></select></br>
-    哪種程度的作文</br>
-    <input type="radio" name="school" value="kindergarden"> 幼稚園<br>
-    <input type="radio" name="school" value="elementary"> 小學<br>
-    <input type="radio" name="school" value="junior"> 國中<br>
-    <input type="radio" name="school" value="senior"> 高中<br>
-    <input type="radio" name="school" value="college"> 大學<br>
-    <input type="radio" name="school" value="research"> 碩博<br>
-    <input type="submit" value="產生作文">
-</form>
 
-<button onclick="myFunction()">產生預覽作文</button>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<p id="demo"></p>
+    <script>
+        function myFunction(word) {
 
-<script>
-    function myFunction() {
-        document.getElementById("demo").innerHTML = "作文";
-    }
-</script>
+            var comp = "我走路走到一半遇到XX"
+
+            rvalue = $('input[name=school]:checked').val()
+            switch (rvalue) {
+                case 'kindergarden':
+                    comp = "ㄜㄜ 啊啊 依依 悠悠 XX 爸爸 嘿嘿";
+                    break;
+                case 'elementary':
+                    comp = "我最喜歡的事情是XX，只要XX的時候我就會很開心。";
+                    comp = comp.replace("XX", word)
+                    break;
+                case 'junior':
+                    comp = "每當我想到XX的時候，我便會不由自主的開心了起來。";
+                    break;
+                case 'senior':
+                    comp = "XX是人生中最重要的事情，古人也曾說過：「XX性也。」";
+                    comp = comp.replace("XX", word)
+                    break;
+                case 'college':
+                    comp = "根據分析多重文本直觀後的推演，XX的演進是大時代下結構性的必然。";
+                    break;
+                default:
+                    comp = "Reseach about XX makes everything becomes posible. </br>  reference: www.myigidis.tigger0319 "
+
+            }
+
+            comp = comp.replace("XX", word)
+            document.getElementById("pls").innerHTML = comp;
+        }
+    </script>
+    <form action="test.php" method="post">
+        用幾個字形容你的作文：<input type="text" name="word"></br>
+        用密碼來形容你的作文：<input type="password "></br>
+        你覺得作文哪裡最重要<select>
+        <option value="Chi ">起</option>
+        <option value="Cheng ">承</option>
+        <option value="Zuan ">轉</option>
+        <option value="He ">合</option></select></br>
+        哪種程度的作文</br>
+        <input type="radio" name="school" value="kindergarden"> 幼稚園<br>
+        <input type="radio" name="school" value="elementary"> 小學<br>
+        <input type="radio" name="school" value="junior"> 國中<br>
+        <input type="radio" name="school" value="senior"> 高中<br>
+        <input type="radio" name="school" value="college"> 大學<br>
+        <input type="radio" name="school" value="research"> 碩博<br>
+        <input type='button' value='產生作文' onclick='myFunction(word.value)'></input>
+    </form>
+
+
+
+    <p id='pls'> </p>
+
+</body>
 
 </html>
